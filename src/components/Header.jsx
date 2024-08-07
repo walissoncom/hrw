@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.jpeg";
 
-const Stepper = () => {
+const Header = () => {
   return (
     <div className="container mx-auto">
       <img className="h-20" src={logo} />
@@ -9,4 +9,4 @@ const Stepper = () => {
   );
 };
 
-export default Stepper;
+export default Header;
