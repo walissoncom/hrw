@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { StepperContext } from "./contexts/StepperContext";
 import Header from "./components/Header";
 import Stepper from "./components/Stepper";
 import StepperControl from "./components/StepperControl";
@@ -15,17 +16,19 @@ import Final from "./components/steps/Final";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [userData, setUserData] = useState("");
+  const [finalData, setFinalData] = useState([]);
 
   const steps = [
     "Marca do carro",
     "Marca da Injeção",
     "Sensores",
-    "Atuadores",
-    "Adicionais",
-    "Painel ou caixa de reles",
-    "Observaçōes",
-    "Acabamentos do chicote",
-    "Acabamentos dos conectores",
+    // "Atuadores",
+    // "Adicionais",
+    // "Painel ou caixa de reles",
+    // "Observaçōes",
+    // "Acabamentos do chicote",
+    // "Acabamentos dos conectores",
     "Final"
   ];
 
@@ -37,34 +40,64 @@ function App() {
         return <Injecao />;
       case 3:
         return <Sensores />;
+      // case 4:
+      //   return <Atuadores />;
+      // case 5:
+      //   return <Adicionais />;
+      // case 6:
+      //   return <PainelOuReles />;
+      // case 7:
+      //   return <Observacoes />;
+      // case 8:
+      //   return <AcabamentosChicote />;
+      // case 9:
+      //   return <AcabamentosConectores />;
       case 4:
-        return <Atuadores />;
-      case 5:
-        return <Adicionais />;
-      case 6:
-        return <PainelOuReles />;
-      case 7:
-        return <Observacoes />;
-      case 8:
-        return <AcabamentosChicote />;
-      case 9:
-        return <AcabamentosConectores />;
-      case 10:
         return <Final />;
     }
   };
 
+  const handleClick = direction => {
+    let newStep = currentStep;
+
+    direction === "next" ? newStep++ : newStep--;
+    // Check if steps are within bounds
+    newStep > 0 && newStep < steps.length && setCurrentStep(newStep);
+
+    console.log(StepperContext);
+  };
+
   return (
-    <div className="bg-white h-screen">
+    <div className="bg-black h-screen text-white">
       <Header />
       <div className="container mx-auto shadow-xl rounded-2xl pb-2">
         {/* Stepper */}
         <div className="container horizontal mt-5">
           <Stepper steps={steps} currentStep={currentStep} />
+
+          {/* Display Components */}
+          <div className="my-10 p-10">
+            <StepperContext.Provider
+              value={{
+                userData,
+                setUserData,
+                finalData,
+                setFinalData
+              }}
+            >
+              {displayStep(currentStep)}
+            </StepperContext.Provider>
+          </div>
         </div>
 
         {/* Navigation controls */}
-        <StepperControl />
+        {currentStep != steps.length && (
+          <StepperControl
+            handleClick={handleClick}
+            currentStep={currentStep}
+            steps={steps}
+          />
+        )}
       </div>
     </div>
   );
