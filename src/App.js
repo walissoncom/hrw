@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Stepper from "./components/Stepper";
 import StepperControl from "./components/StepperControl";
 import Marca from "./components/steps/Marca";
-// import Injecao from "./components/steps/Injecao";
+import Injecao from "./components/steps/Injecao";
 // import Sensores from "./components/steps/Sensores";
 import Atuadores from "./components/steps/Atuadores";
 // import Adicionais from "./components/steps/Adicionais";
@@ -21,7 +21,7 @@ function App() {
 
   const steps = [
     "Carro",
-    // "Injeção",
+    "Injeção",
     // "Sensores",
     "Atuadores",
     // "Adicionais",
@@ -36,11 +36,11 @@ function App() {
     switch (step) {
       case 1:
         return <Marca />;
-      // case 2:
-      //   return <Injecao />;
+      case 2:
+        return <Injecao />;
       // case 3:
       //   return <Sensores />;
-      case 2:
+      case 3:
         return <Atuadores />;
       // case 5:
       //   return <Adicionais />;
@@ -52,7 +52,7 @@ function App() {
       //   return <AcabamentosChicote />;
       // case 9:
       //   return <AcabamentosConectores />;
-      case 3:
+      case 4:
         return <Final />;
       default:
     }

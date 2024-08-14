@@ -1,46 +1,80 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Stack from "@mui/material/Stack";
 import { StepperContext } from "../../contexts/StepperContext";
 
-const Injecao = () => {
+export default function Injecao() {
+  const unique = [...new Set(ecus.map(item => item.title))]; // [ 'A', 'B']
+  const defaultProps = {
+    options: unique
+  };
+  const flatProps = {
+    options: ecus.map(option => option.model)
+  };
+  const [value, setValue] = React.useState(null);
+  const [inputValue, setInputValue] = React.useState("");
+
   const { orderData, setOrderData } = useContext(StepperContext);
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setOrderData({ ...orderData, [name]: value });
-  };
   return (
-    <div className="flex flex-col">
-      <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Marca da Injeção
-        </div>
-        <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
-          <input
-            onChange={handleChange}
-            value={orderData["injecaoMarca"] || ""}
+    <Stack spacing={1} sx={{ width: 300 }}>
+      <Autocomplete
+        {...defaultProps}
+        id="injecaoMarca"
+        clearOnEscape
+        onChange={(event, newValue) => {
+          const inputElement = event.target.id.split("-")[0];
+          console.log(`THIS IS inputElement`, inputElement);
+          setOrderData({ ...orderData, [inputElement]: newValue });
+        }}
+        value={orderData["injecaoMarca"] || ""}
+        inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Marca da Injeção"
             name="injecaoMarca"
-            placeholder="Marca da Injeção"
-            className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
+            variant="standard"
           />
-        </div>
-      </div>
+        )}
+      />
 
-      <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Modelo da Injeção
-        </div>
-        <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
-          <input
-            onChange={handleChange}
-            value={orderData["injecaoModelo"] || ""}
+      <Autocomplete
+        {...flatProps}
+        id="injecaoModelo"
+        clearOnEscape
+        value={orderData["injecaoModelo"] || ""}
+        onChange={(event, newValue) => {
+          const inputElement = event.target.id.split("-")[0];
+          console.log(`THIS IS inputElement`, inputElement);
+          setOrderData({ ...orderData, [inputElement]: newValue });
+        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Modelo da Injeção"
             name="injecaoModelo"
-            placeholder="Modelo da Injeção"
-            className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
+            variant="standard"
           />
-        </div>
-      </div>
-    </div>
+        )}
+      />
+    </Stack>
   );
-};
+}
 
-export default Injecao;
+// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+const ecus = [
+  { title: "Fueltech", model: "350" },
+  { title: "Fueltech", model: "450" },
+  { title: "Fueltech", model: "550" },
+  { title: "Fueltech", model: "650" },
+  { title: "InjePro", model: "T3000" },
+  { title: "InjePro", model: "T4000" },
+  { title: "InjePro", model: "T5000" },
+  { title: "Haltech", model: "Elite 500" },
+  { title: "Haltech", model: "Elite 2000" }
+];

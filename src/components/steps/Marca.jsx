@@ -1,75 +1,76 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Stack from "@mui/material/Stack";
 import { StepperContext } from "../../contexts/StepperContext";
 
 export default function Marca() {
+  const unique = [...new Set(carros.map(item => item.title))]; // [ 'A', 'B']
+  const defaultProps = {
+    options: unique
+  };
+  const flatProps = {
+    options: carros.map(option => option.model)
+  };
+  const [value, setValue] = React.useState(null);
+  const [inputValue, setInputValue] = React.useState("");
+
   const { orderData, setOrderData } = useContext(StepperContext);
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setOrderData({ ...orderData, [name]: value });
-  };
   return (
-    <div className="flex flex-col">
-      <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Marca do carro
-        </div>
-        <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
-          <input
-            onChange={handleChange}
-            value={orderData["carroMarca"] || ""}
+    <Stack spacing={1} sx={{ width: 300 }}>
+      <Autocomplete
+        {...defaultProps}
+        id="carroMarca"
+        clearOnEscape
+        value={orderData["carroMarca"] || ""}
+        onChange={(event, newValue) => {
+          const inputElement = event.target.id.split("-")[0];
+          console.log(`THIS IS inputElement`, inputElement);
+          setOrderData({ ...orderData, [inputElement]: newValue });
+        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Marca do Carro"
             name="carroMarca"
-            placeholder="Marca"
-            className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
+            variant="standard"
           />
-        </div>
-      </div>
+        )}
+      />
 
-      <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Ano do carro
-        </div>
-        <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
-          <input
-            onChange={handleChange}
-            value={orderData["carroAno"] || ""}
-            name="carroAno"
-            placeholder="Ano"
-            type="number"
-            className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-          />
-        </div>
-      </div>
-
-      <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Modelo
-        </div>
-        <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
-          <input
-            onChange={handleChange}
-            value={orderData["carroModelo"] || ""}
+      <Autocomplete
+        {...flatProps}
+        id="carroModelo"
+        clearOnEscape
+        value={orderData["carroModelo"] || ""}
+        onChange={(event, newValue) => {
+          const inputElement = event.target.id.split("-")[0];
+          console.log(`THIS IS inputElement`, inputElement);
+          setOrderData({ ...orderData, [inputElement]: newValue });
+        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Modelo da Carro"
             name="carroModelo"
-            placeholder="Modelo"
-            className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
+            variant="standard"
           />
-        </div>
-      </div>
-
-      <div className="w-full mx-2 flex-1">
-        <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
-          Motor que será utilizado
-        </div>
-        <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
-          <input
-            onChange={handleChange}
-            value={orderData["motorUtilizado"] || ""}
-            name="motorUtilizado"
-            placeholder="Motor Utilizado"
-            className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-          />
-        </div>
-      </div>
-    </div>
+        )}
+      />
+    </Stack>
   );
 }
+
+// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+const carros = [
+  { title: "BMW", model: "318ti" },
+  { title: "BMW", model: "323" },
+  { title: "BMW", model: "325" },
+  { title: "BMW", model: "428" },
+  { title: "Subaru", model: "Impreza" },
+  { title: "Subaru", model: "WRX" },
+  { title: "Subaru", model: "WRX STI" },
+  { title: "Honda", model: "Integra" },
+  { title: "Nissan", model: "350Z" }
+];
