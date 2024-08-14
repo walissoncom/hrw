@@ -4,31 +4,31 @@ import Header from "./components/Header";
 import Stepper from "./components/Stepper";
 import StepperControl from "./components/StepperControl";
 import Marca from "./components/steps/Marca";
-import Injecao from "./components/steps/Injecao";
-import Sensores from "./components/steps/Sensores";
+// import Injecao from "./components/steps/Injecao";
+// import Sensores from "./components/steps/Sensores";
 import Atuadores from "./components/steps/Atuadores";
-import Adicionais from "./components/steps/Adicionais";
-import PainelOuReles from "./components/steps/PainelOuReles";
-import Observacoes from "./components/steps/Observacoes";
-import AcabamentosChicote from "./components/steps/AcabamentosChicote";
-import AcabamentosConectores from "./components/steps/AcabamentosConectores";
+// import Adicionais from "./components/steps/Adicionais";
+// import PainelOuReles from "./components/steps/PainelOuReles";
+// import Observacoes from "./components/steps/Observacoes";
+// import AcabamentosChicote from "./components/steps/AcabamentosChicote";
+// import AcabamentosConectores from "./components/steps/AcabamentosConectores";
 import Final from "./components/steps/Final";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [userData, setUserData] = useState("");
+  const [orderData, setOrderData] = useState("");
   const [finalData, setFinalData] = useState([]);
 
   const steps = [
-    "Marca do carro",
-    "Marca da Injeção",
-    "Sensores",
-    // "Atuadores",
+    "Carro",
+    // "Injeção",
+    // "Sensores",
+    "Atuadores",
     // "Adicionais",
-    // "Painel ou caixa de reles",
+    // "Painel/Reles",
     // "Observaçōes",
-    // "Acabamentos do chicote",
-    // "Acabamentos dos conectores",
+    // "Chicote",
+    // "Conectores",
     "Final"
   ];
 
@@ -36,12 +36,12 @@ function App() {
     switch (step) {
       case 1:
         return <Marca />;
+      // case 2:
+      //   return <Injecao />;
+      // case 3:
+      //   return <Sensores />;
       case 2:
-        return <Injecao />;
-      case 3:
-        return <Sensores />;
-      // case 4:
-      //   return <Atuadores />;
+        return <Atuadores />;
       // case 5:
       //   return <Adicionais />;
       // case 6:
@@ -52,8 +52,9 @@ function App() {
       //   return <AcabamentosChicote />;
       // case 9:
       //   return <AcabamentosConectores />;
-      case 4:
+      case 3:
         return <Final />;
+      default:
     }
   };
 
@@ -62,15 +63,13 @@ function App() {
 
     direction === "next" ? newStep++ : newStep--;
     // Check if steps are within bounds
-    newStep > 0 && newStep < steps.length && setCurrentStep(newStep);
-
-    console.log(StepperContext);
+    newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
   };
 
   return (
-    <div className="bg-black h-screen text-white">
+    <div className="bg-white h-screen text-black">
       <Header />
-      <div className="container mx-auto shadow-xl rounded-2xl pb-2">
+      <div className="container mx-auto pb-2">
         {/* Stepper */}
         <div className="container horizontal mt-5">
           <Stepper steps={steps} currentStep={currentStep} />
@@ -79,8 +78,8 @@ function App() {
           <div className="my-10 p-10">
             <StepperContext.Provider
               value={{
-                userData,
-                setUserData,
+                orderData,
+                setOrderData,
                 finalData,
                 setFinalData
               }}
@@ -91,7 +90,7 @@ function App() {
         </div>
 
         {/* Navigation controls */}
-        {currentStep != steps.length && (
+        {currentStep !== steps.length && (
           <StepperControl
             handleClick={handleClick}
             currentStep={currentStep}

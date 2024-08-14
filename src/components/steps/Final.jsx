@@ -1,21 +1,31 @@
-import React from "react";
+import { useContext } from "react";
+import { StepperContext } from "../../contexts/StepperContext";
 
 const Final = () => {
+  const { orderData, setOrderData } = useContext(StepperContext);
+  console.log(orderData);
   return (
     <div className="container md:mt-10">
       <div className="flex flex-col items-center">
-        <div className="text-green-400">✅</div>
         <div className="mt-3 text-xl font-semibold uppercase text-green-500">
-          Congratulations!
+          Parabéns!
         </div>
         <div className="text-lg font-semibold text-gray-500">
-          Your order has been received by our team!
+          Recebemos o seu pedido ✅
         </div>
-        <a className="mt-10" href="/">
-          <button className="h-10 px-5 text-green-700 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-green-500 hover:text-green-100">
-            Close
-          </button>
-        </a>
+        <div className="mt-5">
+          <ul>
+            <li>Marca: {orderData?.carroMarca}</li>
+            <li>Ano: {orderData?.carroAno}</li>
+            <li>Modelo: {orderData?.carroModelo}</li>
+            <li>Motor Utilizado: {orderData?.motorUtilizado}</li>
+            <li>Marca da Injeção: {orderData?.injecaoMarca}</li>
+            <li>Modelo da Injeção: {orderData?.injecaoModelo}</li>
+            <li>Sensores de Temperatura: {orderData?.sensoresTemperatura}</li>
+            <li>Sensores de Pressão: {orderData?.sensoresPressao}</li>
+            <li>Atuadores: {orderData?.atuadores}</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

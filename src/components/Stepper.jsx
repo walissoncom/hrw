@@ -10,7 +10,7 @@ const Stepper = ({ steps, currentStep }) => {
 
     while (count < newSteps.length) {
       // current step
-      if (count == stepNumber) {
+      if (count === stepNumber) {
         newSteps[count] = {
           ...newSteps[count],
           highlighted: true,
@@ -67,7 +67,7 @@ const Stepper = ({ steps, currentStep }) => {
       <div
         key={index}
         className={
-          index != newStep.length - 1
+          index !== newStep.length - 1
             ? "w-full flex items-center"
             : " flex items-center"
         }
