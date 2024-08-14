@@ -18,7 +18,7 @@ const Final = () => {
             <li>Marca: {orderData?.carroMarca}</li>
             <li>Ano: {orderData?.carroAno}</li>
             <li>Modelo: {orderData?.carroModelo}</li>
-            <li>Motor Utilizado: {orderData?.motorUtilizado}</li>
+            <li>Motor Utilizado: {orderData?.carroMotor}</li>
             <li>Marca da Injeção: {orderData?.injecaoMarca}</li>
             <li>Modelo da Injeção: {orderData?.injecaoModelo}</li>
             <li>Sensores de Temperatura: {orderData?.sensoresTemperatura}</li>

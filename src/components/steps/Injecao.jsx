@@ -5,20 +5,23 @@ import Stack from "@mui/material/Stack";
 import { StepperContext } from "../../contexts/StepperContext";
 
 export default function Injecao() {
-  const unique = [...new Set(ecus.map(item => item.title))]; // [ 'A', 'B']
-  const defaultProps = {
-    options: unique
-  };
-  const flatProps = {
-    options: ecus.map(option => option.model)
-  };
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState("");
 
   const { orderData, setOrderData } = useContext(StepperContext);
+  const unique = [...new Set(ecus.map(item => item.title))]; // [ 'A', 'B']
+  const defaultProps = {
+    options: unique
+  };
+
+  const flatProps = {
+    options: ecus
+      .filter(ecus => ecus.title.includes(orderData.injecaoMarca))
+      .map(option => option.model)
+  };
 
   return (
-    <Stack spacing={1} sx={{ width: 300 }}>
+    <Stack spacing={1} sx={{ width: 500 }}>
       <Autocomplete
         {...defaultProps}
         id="injecaoMarca"
