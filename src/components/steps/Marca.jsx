@@ -23,10 +23,7 @@ export default function Marca() {
   };
 
   const motorProps = {
-    options: carros
-      .filter(cars => cars.fabricante.includes(orderData.carroMarca))
-      .filter(cars => cars.modelo.includes(orderData.carroModelo))
-      .map(option => option.motor)
+    options: motores.map(option => option.codigo + " - " + option.fabricante)
   };
 
   return (
@@ -49,7 +46,7 @@ export default function Marca() {
         renderInput={params => (
           <TextField
             {...params}
-            label="Marca do Carro"
+            label="Marca do carro"
             name="carroMarca"
             variant="standard"
           />
@@ -73,7 +70,7 @@ export default function Marca() {
         renderInput={params => (
           <TextField
             {...params}
-            label="Modelo da Carro"
+            label="Modelo da carro"
             name="carroModelo"
             variant="standard"
           />
@@ -90,13 +87,19 @@ export default function Marca() {
           setOrderData({
             ...orderData,
             [inputElement]: newValue,
-            carroMotor: ""
+            carroMotor: "",
+            carroMotor:
+              "Original - " +
+              carros
+                .filter(cars => cars.fabricante.includes(orderData.carroMarca))
+                .filter(cars => cars.modelo.includes(orderData.carroModelo))
+                .map(option => option.motor)
           });
         }}
         renderInput={params => (
           <TextField
             {...params}
-            label="Ano do Carro"
+            label="Ano do carro"
             name="carroAno"
             variant="standard"
           />
@@ -115,7 +118,7 @@ export default function Marca() {
         renderInput={params => (
           <TextField
             {...params}
-            label="Motor usado no Carro"
+            label="Motor usado no carro"
             name="carroMotor"
             variant="standard"
           />
@@ -198,5 +201,32 @@ const carros = [
     motor: "3.6L V6",
     imagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4D1rVqumX3QdwxqmWKDiUsmJiNlCQuBP7Lg&s"
+  }
+];
+
+const motores = [
+  {
+    codigo: "K20",
+    fabricante: "Honda"
+  },
+  {
+    codigo: "1JZ",
+    fabricante: "Toyota"
+  },
+  {
+    codigo: "2JZ",
+    fabricante: "Toyota"
+  },
+  {
+    codigo: "SR20",
+    fabricante: "Nissan"
+  },
+  {
+    codigo: "EZ30",
+    fabricante: "Subaru"
+  },
+  {
+    codigo: "EJ25",
+    fabricante: "Subaru"
   }
 ];

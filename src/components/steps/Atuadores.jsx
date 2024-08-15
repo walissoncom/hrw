@@ -4,12 +4,10 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { StepperContext } from "../../contexts/StepperContext";
 
 const options = [
-  "Option 0",
-  "Option 1",
-  "Option 2",
-  "op3",
-  "fdkmdfmk",
-  "kdmlslk"
+  "Atuador cilindro elétrico",
+  "Atuador hidráulico",
+  "Atuador pneumático",
+  "Atuador macio"
 ];
 
 export default function Atuadores() {

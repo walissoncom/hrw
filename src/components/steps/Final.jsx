@@ -21,8 +21,6 @@ const Final = () => {
             <li>Motor Utilizado: {orderData?.carroMotor}</li>
             <li>Marca da Injeção: {orderData?.injecaoMarca}</li>
             <li>Modelo da Injeção: {orderData?.injecaoModelo}</li>
-            <li>Sensores de Temperatura: {orderData?.sensoresTemperatura}</li>
-            <li>Sensores de Pressão: {orderData?.sensoresPressao}</li>
             <li>Atuadores: {orderData?.atuadores}</li>
           </ul>
         </div>
