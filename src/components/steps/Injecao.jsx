@@ -28,8 +28,11 @@ export default function Injecao() {
         clearOnEscape
         onChange={(event, newValue) => {
           const inputElement = event.target.id.split("-")[0];
-          console.log(`THIS IS inputElement`, inputElement);
-          setOrderData({ ...orderData, [inputElement]: newValue });
+          setOrderData({
+            ...orderData,
+            [inputElement]: newValue,
+            injecaoModelo: ""
+          });
         }}
         value={orderData["injecaoMarca"] || ""}
         inputValue={inputValue}
@@ -53,7 +56,6 @@ export default function Injecao() {
         value={orderData["injecaoModelo"] || ""}
         onChange={(event, newValue) => {
           const inputElement = event.target.id.split("-")[0];
-          console.log(`THIS IS inputElement`, inputElement);
           setOrderData({ ...orderData, [inputElement]: newValue });
         }}
         renderInput={params => (
