@@ -4,6 +4,25 @@ import { StepperContext } from "../../contexts/StepperContext";
 const Final = () => {
   const { orderData, setOrderData } = useContext(StepperContext);
   console.log(orderData);
+
+  const handleWhatsappClick = () => {
+    const phoneNumber = "+61418304595";
+
+    const name = "Walisson";
+    const car = "Subaru";
+
+    const url =
+      "http://wa.me/" +
+      phoneNumber +
+      "?text=" +
+      "*Name :* " +
+      name +
+      "%0a" +
+      "*Car :* " +
+      car;
+
+    window.open(url, "_blank").focus();
+  };
   return (
     <div className="container md:mt-10">
       <div className="flex flex-col items-center">
@@ -24,6 +43,13 @@ const Final = () => {
             <li>Atuadores: {orderData?.atuadores}</li>
           </ul>
         </div>
+        <button
+          className="bg-green-600 p-3 text-white mt-3"
+          type="button"
+          onClick={handleWhatsappClick}
+        >
+          Send
+        </button>
       </div>
     </div>
   );
