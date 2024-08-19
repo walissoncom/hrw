@@ -71,7 +71,7 @@ function App() {
       <Header />
       <div className="container mx-auto pb-2">
         {/* Stepper */}
-        <div className="container horizontal mt-5">
+        <div className="container horizontal mt-5 min-h-96">
           <Stepper steps={steps} currentStep={currentStep} />
 
           {/* Display Components */}
