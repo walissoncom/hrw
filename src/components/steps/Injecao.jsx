@@ -5,7 +5,6 @@ import Stack from "@mui/material/Stack";
 import { StepperContext } from "../../contexts/StepperContext";
 
 export default function Injecao() {
-  const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState("");
 
   const { orderData, setOrderData } = useContext(StepperContext);

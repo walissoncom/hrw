@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { StepperContext } from "../../contexts/StepperContext";
 
 const Final = () => {
-  const { orderData, setOrderData } = useContext(StepperContext);
+  const { orderData } = useContext(StepperContext);
   console.log(orderData);
 
   const handleWhatsappClick = () => {
