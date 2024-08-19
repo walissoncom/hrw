@@ -87,11 +87,7 @@ export default function Marca() {
           setOrderData({
             ...orderData,
             [inputElement]: newValue,
-            carroMotor: "",
-            carroMotor: carros
-              .filter(cars => cars.fabricante.includes(orderData.carroMarca))
-              .filter(cars => cars.modelo.includes(orderData.carroModelo))
-              .map(option => option.motor)
+            carroMotor: ""
           });
         }}
         renderInput={params => (
