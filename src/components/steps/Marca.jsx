@@ -122,9 +122,9 @@ export default function Marca() {
         </Stack>
       </div>
       <div className="flex justify-center w-full">
-        {orderData?.carroImagem && (
+        {/* {orderData?.carroImagem && (
           <img className="max-w-xs" src={orderData?.carroImagem} alt="Carro" />
-        )}
+        )} */}
       </div>
     </div>
   );

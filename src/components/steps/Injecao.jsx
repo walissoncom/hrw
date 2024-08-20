@@ -76,9 +76,9 @@ export default function Injecao() {
         </Stack>
       </div>
       <div className="flex justify-center w-full">
-        {orderData?.injecaoImagem && (
+        {/* {orderData?.injecaoImagem && (
           <img className="w-80" src={orderData?.injecaoImagem} alt="ECU" />
-        )}
+        )} */}
       </div>
     </div>
   );
