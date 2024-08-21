@@ -15,24 +15,22 @@ export default function Atuadores() {
   const { orderData, setOrderData } = useContext(StepperContext);
 
   return (
-    <div>
-      <Autocomplete
-        value={orderData["atuadores"] || ""}
-        onChange={(event, newValue) => {
-          const inputElment = event.target.id.split("-")[0];
-          setOrderData({ ...orderData, [inputElment]: newValue });
-        }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        id="atuadores"
-        options={options}
-        sx={{ width: 300 }}
-        renderInput={params => (
-          <TextField {...params} label="Atuadores" name="atuadores" />
-        )}
-      />
-    </div>
+    <Autocomplete
+      value={orderData["atuadores"] || ""}
+      onChange={(event, newValue) => {
+        const inputElment = event.target.id.split("-")[0];
+        setOrderData({ ...orderData, [inputElment]: newValue });
+      }}
+      inputValue={inputValue}
+      onInputChange={(event, newInputValue) => {
+        setInputValue(newInputValue);
+      }}
+      id="atuadores"
+      options={options}
+      sx={{ width: 300 }}
+      renderInput={params => (
+        <TextField {...params} label="Atuadores" name="atuadores" />
+      )}
+    />
   );
 }

@@ -20,67 +20,65 @@ export default function Injecao() {
   };
 
   return (
-    <div className="flex justify-content-center">
-      <div>
-        <Stack spacing={1} sx={{ width: 500 }}>
-          <Autocomplete
-            {...defaultProps}
-            id="injecaoMarca"
-            clearOnEscape
-            onChange={(event, newValue) => {
-              const inputElement = event.target.id.split("-")[0];
-              setOrderData({
-                ...orderData,
-                [inputElement]: newValue,
-                injecaoModelo: ""
-              });
-            }}
-            value={orderData["injecaoMarca"] || ""}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Marca da Injeção"
-                name="injecaoMarca"
-              />
-            )}
-          />
+    <>
+      <Stack spacing={1} sx={{ width: 1 }}>
+        <Autocomplete
+          {...defaultProps}
+          id="injecaoMarca"
+          clearOnEscape
+          onChange={(event, newValue) => {
+            const inputElement = event.target.id.split("-")[0];
+            setOrderData({
+              ...orderData,
+              [inputElement]: newValue,
+              injecaoModelo: ""
+            });
+          }}
+          value={orderData["injecaoMarca"] || ""}
+          inputValue={inputValue}
+          onInputChange={(event, newInputValue) => {
+            setInputValue(newInputValue);
+          }}
+          renderInput={params => (
+            <TextField
+              {...params}
+              label="Marca da Injeção"
+              name="injecaoMarca"
+            />
+          )}
+        />
 
-          <Autocomplete
-            {...flatProps}
-            id="injecaoModelo"
-            clearOnEscape
-            value={orderData["injecaoModelo"] || ""}
-            onChange={(event, newValue) => {
-              const inputElement = event.target.id.split("-")[0];
-              const imagemtToSet = ecus.find(
-                element => element.modelo === newValue
-              );
-              setOrderData({
-                ...orderData,
-                [inputElement]: newValue,
-                injecaoImagem: imagemtToSet.imagem
-              });
-            }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Modelo da Injeção"
-                name="injecaoModelo"
-              />
-            )}
-          />
-        </Stack>
-      </div>
-      <div className="flex justify-center w-full">
-        {/* {orderData?.injecaoImagem && (
+        <Autocomplete
+          {...flatProps}
+          id="injecaoModelo"
+          clearOnEscape
+          value={orderData["injecaoModelo"] || ""}
+          onChange={(event, newValue) => {
+            const inputElement = event.target.id.split("-")[0];
+            const imagemtToSet = ecus.find(
+              element => element.modelo === newValue
+            );
+            setOrderData({
+              ...orderData,
+              [inputElement]: newValue,
+              injecaoImagem: imagemtToSet.imagem
+            });
+          }}
+          renderInput={params => (
+            <TextField
+              {...params}
+              label="Modelo da Injeção"
+              name="injecaoModelo"
+            />
+          )}
+        />
+      </Stack>
+      {/* <div className="flex justify-center w-full">
+        {orderData?.injecaoImagem && (
           <img className="w-80" src={orderData?.injecaoImagem} alt="ECU" />
-        )} */}
-      </div>
-    </div>
+        )}
+      </div> */}
+    </>
   );
 }
 

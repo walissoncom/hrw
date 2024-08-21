@@ -27,106 +27,100 @@ export default function Marca() {
   };
 
   return (
-    <div className="flex">
-      <div>
-        <Stack spacing={1} sx={{ width: 500 }}>
-          <Autocomplete
-            {...defaultProps}
-            id="carroMarca"
-            clearOnEscape
-            value={orderData["carroMarca"] || ""}
-            onChange={(event, newValue) => {
-              const inputElement = event.target.id.split("-")[0];
-              setOrderData({
-                ...orderData,
-                [inputElement]: newValue,
-                carroModelo: "",
-                carroAno: "",
-                carroMotor: ""
-              });
-            }}
-            renderInput={params => (
-              <TextField {...params} label="Marca do carro" name="carroMarca" />
-            )}
-          />
+    <>
+      <Stack spacing={1} sx={{ width: 1 }}>
+        <Autocomplete
+          {...defaultProps}
+          id="carroMarca"
+          clearOnEscape
+          value={orderData["carroMarca"] || ""}
+          onChange={(event, newValue) => {
+            const inputElement = event.target.id.split("-")[0];
+            setOrderData({
+              ...orderData,
+              [inputElement]: newValue,
+              carroModelo: "",
+              carroAno: "",
+              carroMotor: ""
+            });
+          }}
+          renderInput={params => (
+            <TextField {...params} label="Marca do carro" name="carroMarca" />
+          )}
+        />
 
-          <Autocomplete
-            {...flatProps}
-            id="carroModelo"
-            clearOnEscape
-            value={orderData["carroModelo"] || ""}
-            onChange={(event, newValue) => {
-              const inputElement = event.target.id.split("-")[0];
-              const imagemtToSet = carros.find(
-                element => element.modelo === newValue
-              );
-              setOrderData({
-                ...orderData,
-                [inputElement]: newValue,
-                carroAno: "",
-                carroMotor: "",
-                carroImagem: imagemtToSet.imagem
-              });
-            }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Modelo da carro"
-                name="carroModelo"
-              />
-            )}
-          />
+        <Autocomplete
+          {...flatProps}
+          id="carroModelo"
+          clearOnEscape
+          value={orderData["carroModelo"] || ""}
+          onChange={(event, newValue) => {
+            const inputElement = event.target.id.split("-")[0];
+            const imagemtToSet = carros.find(
+              element => element.modelo === newValue
+            );
+            setOrderData({
+              ...orderData,
+              [inputElement]: newValue,
+              carroAno: "",
+              carroMotor: "",
+              carroImagem: imagemtToSet.imagem
+            });
+          }}
+          renderInput={params => (
+            <TextField {...params} label="Modelo da carro" name="carroModelo" />
+          )}
+        />
 
-          <Autocomplete
-            {...anoProps}
-            id="carroAno"
-            clearOnEscape
-            value={orderData["carroAno"] || ""}
-            onChange={(event, newValue) => {
-              const inputElement = event.target.id.split("-")[0];
-              setOrderData({
-                ...orderData,
-                [inputElement]: newValue,
-                carroMotor:
-                  "Original - " +
-                  carros
-                    .filter(cars =>
-                      cars.fabricante.includes(orderData.carroMarca)
-                    )
-                    .filter(cars => cars.modelo.includes(orderData.carroModelo))
-                    .map(option => option.motor)
-              });
-            }}
-            renderInput={params => (
-              <TextField {...params} label="Ano do carro" name="carroAno" />
-            )}
-          />
+        <Autocomplete
+          {...anoProps}
+          id="carroAno"
+          clearOnEscape
+          value={orderData["carroAno"] || ""}
+          onChange={(event, newValue) => {
+            const inputElement = event.target.id.split("-")[0];
+            setOrderData({
+              ...orderData,
+              [inputElement]: newValue,
+              carroMotor:
+                "Original - " +
+                carros
+                  .filter(cars =>
+                    cars.fabricante.includes(orderData.carroMarca)
+                  )
+                  .filter(cars => cars.modelo.includes(orderData.carroModelo))
+                  .map(option => option.motor)
+            });
+          }}
+          renderInput={params => (
+            <TextField {...params} label="Ano do carro" name="carroAno" />
+          )}
+        />
 
-          <Autocomplete
-            {...motorProps}
-            id="carroMotor"
-            clearOnEscape
-            value={orderData["carroMotor"] || ""}
-            onChange={(event, newValue) => {
-              const inputElement = event.target.id.split("-")[0];
-              setOrderData({ ...orderData, [inputElement]: newValue });
-            }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Motor usado no carro"
-                name="carroMotor"
-              />
-            )}
-          />
-        </Stack>
-      </div>
-      <div className="flex justify-center w-full">
-        {/* {orderData?.carroImagem && (
-          <img className="max-w-xs" src={orderData?.carroImagem} alt="Carro" />
-        )} */}
-      </div>
-    </div>
+        <Autocomplete
+          {...motorProps}
+          id="carroMotor"
+          clearOnEscape
+          value={orderData["carroMotor"] || ""}
+          onChange={(event, newValue) => {
+            const inputElement = event.target.id.split("-")[0];
+            setOrderData({ ...orderData, [inputElement]: newValue });
+          }}
+          renderInput={params => (
+            <TextField
+              {...params}
+              label="Motor usado no carro"
+              name="carroMotor"
+            />
+          )}
+        />
+      </Stack>
+      {/* <div className="flex justify-center w-full">
+      {orderData?.carroImagem && (
+        <img className="max-w-xs" src={orderData?.carroImagem} alt="Carro" />
+      )}
+    </div>*/}
+    </>
   );
 }
 
