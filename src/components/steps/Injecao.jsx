@@ -8,7 +8,7 @@ export default function Injecao() {
   const [inputValue, setInputValue] = React.useState("");
 
   const { orderData, setOrderData } = useContext(StepperContext);
-  const unique = [...new Set(ecus.map(item => item.fabricante))]; // [ 'A', 'B']
+  const unique = [...new Set(ecus.map(item => item.fabricante))]; // Sort items - [ 'A', 'B']
   const defaultProps = {
     options: unique
   };
@@ -104,7 +104,7 @@ const ecus = [
   },
   {
     fabricante: "Fueltech",
-    modelo: "FT600",
+    modelo: "FT 600",
     imagem: "https://www.fueltech.net/cdn/shop/products/600_2_1.jpg"
   },
   {
