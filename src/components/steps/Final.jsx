@@ -11,7 +11,7 @@ const Final = () => {
       "http://wa.me/" +
       phoneNumber +
       "?text=" +
-      "*Marca: " +
+      "*Marca:* " +
       orderData?.carroMarca +
       "%0a" +
       "*Ano:* " +
@@ -44,7 +44,7 @@ const Final = () => {
           Parabéns!
         </div>
         <div className="text-lg font-semibold text-gray-500">
-          Recebemos o seu pedido ✅
+          Seu pedido está quase finalizado, verifique as informações abaixo:
         </div>
 
         <table className="border-collapse border border-slate-500 mt-5 w-full md:w-10/12">
@@ -114,7 +114,7 @@ const Final = () => {
           type="button"
           onClick={handleWhatsappClick}
         >
-          ENVIAR
+          FINALIZAR 🚀
         </button>
       </div>
     </div>
